@@ -19,16 +19,19 @@ phases:
       - echo Pushing the Docker image...
       - docker push ${ECR_REPOSITORY}:latest
       - echo Build completed on `date`
-      - echo Creating imagedefinitions.json...
+      - echo Creating imageDetail.json...
       - |
         echo '[
           {
             "name": "container-test-app",
             "imageUri": "'${ECR_REPOSITORY}':latest"
           }
-        ]' > imagedefinitions.json
-      - echo imagedefinitions.json created.
+        ]' > imageDetail.json
+      - echo imageDetail.json created.
 
 artifacts:
   files:
-    - imagedefinitions.json
+#    - imagedefinitions.json
+    - appspec.yml
+    - taskdef.json
+    - imageDetail.json
